@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MSTeamsSandbox.Application;
 
 namespace MSTeamsSandbox.Api
 {
@@ -17,7 +18,7 @@ namespace MSTeamsSandbox.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // TODO: call DI composition method from Application layer
-
+            services.AddApplication();
             services.AddControllers();
             services.AddMvc();
         }

@@ -22,7 +22,7 @@ namespace MSTeamsSandbox.Application
 
         public async Task<Team> TryCreateTeam()
         {
-            GraphServiceClient graphClient = new GraphServiceClient( authProvider );
+            GraphServiceClient graphClient = new GraphServiceClient(authProvider);
             var team = new Team
             {
                 Channels = (ITeamChannelsCollectionPage)new List<Channel>()
@@ -30,19 +30,19 @@ namespace MSTeamsSandbox.Application
                      new Channel
                      {
                          DisplayName = "Main channel",
-                         
+
                      }
-        
+
                 },
-                 MemberSettings = new TeamMemberSettings
-                 {
-                      AllowCreateUpdateChannels = false,
-                      AllowDeleteChannels = false,
-                     AllowAddRemoveApps = false,
-                     AllowCreateUpdateRemoveTabs = false,
-                     AllowCreateUpdateRemoveConnectors = false
-                 },
-                 InstalledApps = (ITeamInstalledAppsCollectionPage)new List<TeamsAppInstallation>()
+                MemberSettings = new TeamMemberSettings
+                {
+                    AllowCreateUpdateChannels = false,
+                    AllowDeleteChannels = false,
+                    AllowAddRemoveApps = false,
+                    AllowCreateUpdateRemoveTabs = false,
+                    AllowCreateUpdateRemoveConnectors = false
+                },
+                InstalledApps = (ITeamInstalledAppsCollectionPage)new List<TeamsAppInstallation>()
                  {
                      new TeamsAppInstallation
                      {
@@ -60,7 +60,7 @@ namespace MSTeamsSandbox.Application
                      }
 
                  },
-                 AdditionalData = new Dictionary<string, object>()
+                AdditionalData = new Dictionary<string, object>()
                  {
                      {"template@odata.bind", "https://graph.microsoft.com/beta/teamsTemplates('standard')"},
                      {"group@odata.bind", "https://graph.microsoft.com/v1.0/groups('groupId')"}
@@ -72,12 +72,12 @@ namespace MSTeamsSandbox.Application
                   .Request()
                   .AddAsync(team);
             return result;
-            
+
 
 
         }
 
-        
+
 
     }
 }
