@@ -19,6 +19,7 @@ namespace MSTeamsSandbox.Api
             // TODO: call DI composition method from Application layer
 
             services.AddControllers();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

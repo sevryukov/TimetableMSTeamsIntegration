@@ -4,6 +4,13 @@
     <ProjectReference Include="..\Domain\MSTeamsSandbox.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Graph" Version="3.9.0" />
+    <PackageReference Include="Microsoft.Graph.Auth" Version="1.0.0-preview.5" />
+    <PackageReference Include="Microsoft.Graph.Core" Version="2.0.0-preview.3" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.17.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
