@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace MSTeamsSandbox.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     public class CreateTeamController: ControllerBase
     {
         private CreateTeamService _teamservice;
