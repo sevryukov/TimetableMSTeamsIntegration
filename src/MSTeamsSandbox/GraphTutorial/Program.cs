@@ -40,9 +40,10 @@ namespace GraphTutorial
             // Get signed in user
             var user = await GraphHelper.GetMeAsync();
             Console.WriteLine($"Welcome {user.DisplayName}!\n");
+            await CreateTeam();
             // </GetUserSnippet>
 
-            int choice = -1;
+           /* int choice = -1;
 
             while (choice != 0)
             {
@@ -79,7 +80,8 @@ namespace GraphTutorial
                         Console.WriteLine("Invalid choice! Please try again.");
                         break;
                 }
-            }
+            }*/
+
         }
 
         // <ListEventsSnippet>
@@ -98,8 +100,21 @@ namespace GraphTutorial
             }
         }
         // </ListEventsSnippet>
-
+        
         // <FormatDateSnippet>
+        static async Task CreateTeam()
+        {
+            try
+            {
+              var team = await GraphHelper.CreateTeam();
+              Console.WriteLine("Looks like everything is ok");
+              Console.WriteLine(team.DisplayName);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Something went wrong - look at the message: {e.Message}");
+            }
+        }
         static string FormatDateTimeTimeZone(Microsoft.Graph.DateTimeTimeZone value)
         {
             // Get the timezone specified in the Graph value

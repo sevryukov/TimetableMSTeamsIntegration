@@ -8,44 +8,45 @@ namespace MSTeamsSandbox.Application
 {
     public class CreateTeamService
     {
-        private string clientSecret = "5_P2z2ZtMG624F6iegoGpq1R-~-IHFJya9";
-        private string clientId = "b80af835-246e-4e4b-973c-8711672e4399";
+        //private string clientSecret = "5_P2z2ZtMG624F6iegoGpq1R-~-IHFJya9";
+        //private string clientId = "b80af835-246e-4e4b-973c-8711672e4399";
 
-        private ClientCredentialProvider authProvider;
+       /* private ClientCredentialProvider _authProvider;
 
-        public CreateTeamService()
+        public CreateTeamService(ClientCredentialProvider authProvider)
         {
-            IConfidentialClientApplication confidentialClientApplication = ConfidentialClientApplicationBuilder
-                .Create(clientId).WithClientSecret(clientSecret).Build();
-            authProvider = new ClientCredentialProvider(confidentialClientApplication);
-        }
+            _authProvider = authProvider;
+        }*/
 
-        public async Task<Team> TryCreateTeam()
+        public static async Task<object> TryCreateTeam(GraphServiceClient graphClient)
         {
-            GraphServiceClient graphClient = new GraphServiceClient(authProvider);
-            var team = new Team
-            {
-                Channels = (ITeamChannelsCollectionPage)new List<Channel>()
-                {
-                     new Channel
-                     {
-                         DisplayName = "Main channel",
+            //GraphServiceClient graphClient = new GraphServiceClient(authProvider);
+            // int a = 0;
+             var team = new Team
+             {
+                 DisplayName = "First Team",
+                 Description = "First team created to try Graph",
+                // Channels = (ITeamChannelsCollectionPage)new List<Channel>()
+                // {
+                //      new Channel
+                //      {
+                //          DisplayName = "Main channel",
 
-                     }
+                //      }
 
-                },
-                MemberSettings = new TeamMemberSettings
-                {
-                    AllowCreateUpdateChannels = false,
-                    AllowDeleteChannels = false,
-                    AllowAddRemoveApps = false,
-                    AllowCreateUpdateRemoveTabs = false,
-                    AllowCreateUpdateRemoveConnectors = false
-                },
-                InstalledApps = (ITeamInstalledAppsCollectionPage)new List<TeamsAppInstallation>()
+                // },
+                 MemberSettings = new TeamMemberSettings  
+                 {
+                     AllowCreateUpdateChannels = false,
+                     AllowDeleteChannels = false,
+                     AllowAddRemoveApps = false,
+                     AllowCreateUpdateRemoveTabs = false,
+                     AllowCreateUpdateRemoveConnectors = false
+                 },
+                 InstalledApps = (ITeamInstalledAppsCollectionPage)new List<TeamsAppInstallation>()
                  {
                      new TeamsAppInstallation
-                     {
+                    {
                          AdditionalData = new Dictionary<string, object>()
                          {
                              {"teamsApp@odata.bind", "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps('com.microsoft.teamspace.tab.vsts')"}
@@ -60,24 +61,21 @@ namespace MSTeamsSandbox.Application
                      }
 
                  },
-                AdditionalData = new Dictionary<string, object>()
+                 AdditionalData = new Dictionary<string, object>()
                  {
                      {"template@odata.bind", "https://graph.microsoft.com/beta/teamsTemplates('standard')"},
                      {"group@odata.bind", "https://graph.microsoft.com/v1.0/groups('groupId')"}
                  }
+             };
+            // int z = 0;
+           
+             var result = await graphClient.Teams
+                   .Request()
+                   .AddAsync(team);
 
-            };
+            //return await graphClient.Me.Request().GetAsync();
 
-            var result = await graphClient.Teams
-                  .Request()
-                  .AddAsync(team);
-            return result;
-
-
-
+            return (object)result;
         }
-
-
-
     }
 }
