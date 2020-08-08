@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\TimetableMSTeamsIntegration.Infrastructure.csproj" />
+    <ProjectReference Include="..\Application\TimetableMSTeamsIntegration.Application.csproj" />
+    <ProjectReference Include="..\Domain\TimetableMSTeamsIntegration.Domain.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+</Project>
