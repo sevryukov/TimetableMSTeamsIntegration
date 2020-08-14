@@ -1,13 +1,21 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using System;
 using TimetableMSTeamsIntegration.Application.Services;
 
 namespace TimetableMSTeamsIntegration.Application.Commands
 {
     public class CreateMeeting : IRequest
     {
-        // TODO: put here information required for creating meeting
+        public CreateMeeting(Guid meetingId, Guid teamId)
+        {
+            MeetingId = meetingId;
+            TeamId = teamId;
+        }
+
+        public Guid MeetingId{ get; private set; }
+        public Guid TeamId{ get; private set; }
     }
 
     public class CreateMeetingHandler : IRequestHandler<CreateMeeting>
@@ -28,6 +36,16 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // TODO: implement handling
             // based on request info post information about meeting creation in MS Teams
             // save information on meeting in service database
+            try
+            {
+                await _grahpClient.CreateMeetingAsync(request.MeetingId, request.TeamId);
+
+                await _integrationRepository.CreateMeetingAsync(request.MeetingId, request.TeamId);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
 
             return Unit.Value;
         }

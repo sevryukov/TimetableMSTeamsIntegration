@@ -8,14 +8,14 @@ namespace TimetableMSTeamsIntegration.Application.Services
 {
     public interface IMSGraphClient
     {
-        void CreateTeam(TeamCreated teamCreatedEvent);
-        void AddMember(MemberAdded memberAddedEvent);
         Task AddMemberAsync(Guid memberId, Guid teamId);
-        void RemoveMember(MemberRemoved memberRemovedEvent);
-        void CreateMeeting(MeetingCreated meetingCreatedEvent);
-        void CancelMeeting(MeetingCancelled meetingCancelledEvent);
-        void FinishMeeting(MeetingFinished meetingFinishedEvent);
-        void ShiftMeeting(MeetingShifted meetingShiftedEvent);
+        Task RemoveMemberAsync(Guid memberId, Guid teamId);
+        Task RemoveMembersAsync(IEnumerable<(Guid memberId, Guid teamId)> members);
+        Task CreateMeetingAsync(Guid meetingId, Guid teamId);
+        Task CancelMeetingAsync(Guid meetingId, Guid teamId);
+        Task FinishMeetingAsync(Guid meetingId, Guid teamId);
+        Task ShiftMeetingAsync(Guid meetingId, Guid teamId, DateTime newStartTime);
         Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null);
+        Task CloseTeamAsync(Guid teamId);
     }
 }

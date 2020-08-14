@@ -2,7 +2,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using TimetableMSTeamsIntegration.Application.Services;
-using Microsoft.Graph;
 using TimetableMSTeamsIntegration.Domain.Entities.Aggregates.TeamAggregates;
 using System;
 

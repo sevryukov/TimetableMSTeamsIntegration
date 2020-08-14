@@ -1,13 +1,19 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using System;
 using TimetableMSTeamsIntegration.Application.Services;
 
 namespace TimetableMSTeamsIntegration.Application.Commands
 {
     public class CloseTeam : IRequest
     {
-        // TODO: put here info about team to be closed
+        public CloseTeam(Guid teamId)
+        {
+            TeamId = teamId;
+        }
+        public Guid TeamId{ get; private set; }
+
     }
 
     public class CloseTeamHandler : IRequestHandler<CloseTeam>
@@ -28,6 +34,16 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // TODO: implement handling
             // delete team via graph api
             // put information about team deletion to db
+            try
+            {
+                await _graphClient.CloseTeamAsync(request.TeamId);
+
+                await _integrationRepository.CloseTeamAsync(request.TeamId);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
 
             return Unit.Value;
         }
