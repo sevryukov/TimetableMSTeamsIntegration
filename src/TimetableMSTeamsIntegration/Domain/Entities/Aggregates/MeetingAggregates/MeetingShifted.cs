@@ -3,9 +3,9 @@ using TimetableMSTeamsIntegration.Domain.Abstract;
 
 namespace TimetableMSTeamsIntegration.Domain.Entities.Aggregates.MeetingAggregates
 {
-    public class MeetingShefted : IAggregate<Meeting>
+    public class MeetingShifted : IAggregate<Meeting>
     {
-        public MeetingShefted(Guid meetingGraphId, DateTime shiftedTo)
+        public MeetingShifted(Guid meetingGraphId, DateTime shiftedTo)
         {
             MeetingGraphId = meetingGraphId;
             ShiftedTo = shiftedTo;
