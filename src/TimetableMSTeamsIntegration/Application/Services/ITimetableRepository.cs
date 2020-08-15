@@ -7,8 +7,8 @@ namespace TimetableMSTeamsIntegration.Application.Services
     {
         // TODO: put behavior here 
         Team GetTeamFromTimetable(Guid teamTimetableId);
-        Meeting GetMeetingFromTimetable(Guid meetingTimetableId);
-        TeamMember GetTeamMemberFromTimetable(Guid memberTimetableId);
+        Meeting GetMeetingFromTimetable(Guid meetingTimetableId, Guid teamTimetableId);
+        TeamMember GetTeamMemberFromTimetable(Guid memberTimetableId, Guid teamTimetableId);
   
     }
 }

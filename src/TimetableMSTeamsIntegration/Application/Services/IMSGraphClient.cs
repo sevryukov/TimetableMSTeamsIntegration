@@ -8,14 +8,14 @@ namespace TimetableMSTeamsIntegration.Application.Services
 {
     public interface IMSGraphClient
     {
-        Task AddMemberAsync(Guid memberId, Guid teamId);
-        Task RemoveMemberAsync(Guid memberId, Guid teamId);
-        Task RemoveMembersAsync(IEnumerable<(Guid memberId, Guid teamId)> members);
-        Task CreateMeetingAsync(Guid meetingId, Guid teamId);
-        Task CancelMeetingAsync(Guid meetingId, Guid teamId);
-        Task FinishMeetingAsync(Guid meetingId, Guid teamId);
-        Task ShiftMeetingAsync(Guid meetingId, Guid teamId, DateTime newStartTime);
-        Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null);
-        Task CloseTeamAsync(Guid teamId);
+        Task InsertAddMemberEventAsync(Guid memberId, Guid teamId);
+        Task InsertDeleteMemberEventAsync(Guid memberId, Guid teamId);
+        Task InsertDeleteMembersEventAsync(IEnumerable<(Guid memberId, Guid teamId)> members);
+        Task InsertCreateMeetingEventAsync(Guid meetingId, Guid teamId);
+        Task InsertCancelMeetingEventAsync(Guid meetingId, Guid teamId);
+        Task InsertFinishMeetingEventAsync(Guid meetingId, Guid teamId);
+        Task InsertShiftMeetingEventAsync(Guid meetingId, Guid teamId, DateTime newStartTime);
+        Task<Guid> InsertCreateTeamEventAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null);
+        Task InsertCloseTeamEventAsync(Guid teamId);
     }
 }

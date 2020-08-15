@@ -36,13 +36,13 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             try
             {
                 // adding member to MS Team via Graph Client
-                await _graphClient.AddMemberAsync(
+                await _graphClient.InsertAddMemberEventAsync(
                     memberId: request.MemberId,
                     teamId: request.TeamId
                 );
 
                 // everything is ok => create event in repo that describes that member was added
-                await _integrationRepository.CreateAddMemberEventAsync(
+                await _integrationRepository.InsertAddMemberEventAsync(
                     memberId: request.MemberId,
                     teamId: request.TeamId
                 );

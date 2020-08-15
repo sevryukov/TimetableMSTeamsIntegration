@@ -60,7 +60,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             try
             {
                 // creating team in MS Graph via API
-                Guid teamId = await _graphClient.CreateTeamAsync(
+                Guid teamId = await _graphClient.InsertCreateTeamEventAsync(
                     request.Discipline,
                     request.Division,
                     request.ContingentUnit,
@@ -72,7 +72,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
                 // if everything ok, we know id of the team => event happened
                 // we post it to database
 
-                await _integrationRepository.CreateCreateTeamEventAsync(
+                await _integrationRepository.InsertCreateTeamEventAsync(
                     request.Discipline,
                     request.Division,
                     request.ContingentUnit,
@@ -82,7 +82,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
                 // new we need to add create members events:
                 if (request.Members != null)
                 {
-                    await _integrationRepository.CreateRangeAddMemberEventAsync(
+                    await _integrationRepository.InsertRangeAddMemberEventAsync(
                         request.Members
                             .Select(x => (x, teamId))
                             .ToArray()

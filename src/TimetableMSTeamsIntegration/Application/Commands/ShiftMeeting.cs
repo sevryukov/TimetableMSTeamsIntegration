@@ -41,9 +41,9 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // save info about meeting shift in db
             try
             {
-                await _graphClient.ShiftMeetingAsync(request.MeetingId, request.TeamId, request.NewStartTime);
+                await _graphClient.InsertShiftMeetingEventAsync(request.MeetingId, request.TeamId, request.NewStartTime);
 
-                await _integrationRepository.ShiftMeetingAsync(request.MeetingId, request.TeamId, request.NewStartTime);
+                await _integrationRepository.InsertShiftMeetingEventAsync(request.MeetingId, request.TeamId, request.NewStartTime);
             }
             catch(Exception e)
             {

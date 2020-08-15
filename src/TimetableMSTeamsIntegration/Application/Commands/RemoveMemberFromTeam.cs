@@ -38,9 +38,9 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // save information about deletion to service database
             try
             {
-                await _graphClient.RemoveMemberAsync(request.MemberId, request.TeamId);
+                await _graphClient.InsertDeleteMemberEventAsync(request.MemberId, request.TeamId);
 
-                await _integrationRepository.CreateRemoveMemberEventAsync(request.MemberId, request.TeamId);
+                await _integrationRepository.InsertDeleteMemberEventAsync(request.MemberId, request.TeamId);
                 //TODO: update delection for many members
             }
             catch(Exception e)
