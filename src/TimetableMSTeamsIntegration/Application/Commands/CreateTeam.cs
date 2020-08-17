@@ -60,7 +60,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             try
             {
                 // creating team in MS Graph via API
-                Guid teamId = await _graphClient.InsertCreateTeamEventAsync(
+                Guid teamId = await _graphClient.CreateTeamAsync(
                     request.Discipline,
                     request.Division,
                     request.ContingentUnit,

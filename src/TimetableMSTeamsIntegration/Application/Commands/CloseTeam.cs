@@ -36,7 +36,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // put information about team deletion to db
             try
             {
-                await _graphClient.InsertCloseTeamEventAsync(request.TeamId);
+                await _graphClient.CloseTeamAsync(request.TeamId);
 
                 await _integrationRepository.InsertCloseTeamEventAsync(request.TeamId);
             }

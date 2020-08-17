@@ -12,43 +12,43 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
         public MSGraphClient(GraphServiceClient graphClient)
             => _graphClient = graphClient;
 
-        public Task InsertAddMemberEventAsync(Guid memberId, Guid teamId)
+        public Task AddMemberAsync(Guid memberId, Guid teamId)
         {
             // TODO: implement
             throw new NotImplementedException();
         }
 
-        public Task InsertCancelMeetingEventAsync(Guid meetingId, Guid teamId)
+        public Task CancelMeetingAsync(Guid meetingId, Guid teamId)
         {
             // TODO: implement
             throw new NotImplementedException();
         }
 
-        public Task InsertCloseTeamEventAsync(Guid teamId)
+        public Task CloseTeamAsync(Guid teamId)
         {
             // TODO: implement
             throw new NotImplementedException();
         }
 
-        public Task InsertCreateMeetingEventAsync(Guid meetingId, Guid teamId)
+        public Task CreateMeetingAsync(Guid meetingId, Guid teamId)
         {
             // TODO: implement
             throw new NotImplementedException();
         }
 
-        public Task<Guid> InsertCreateTeamEventAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null)
+        public Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null)
         {
             // TODO: implement
             throw new NotImplementedException();
         }
 
-        public Task InsertDeleteMemberEventAsync(Guid memberId, Guid teamId)
+        public Task RemoveMemberAsync(Guid memberId, Guid teamId)
         {
             // TODO: implement
             throw new NotImplementedException();
         }
 
-        public Task InsertDeleteMembersEventAsync(IEnumerable<(Guid memberId, Guid teamId)> members)
+        public Task RemoveMembersAsync(IEnumerable<(Guid memberId, Guid teamId)> members)
         {
             // TODO: implement
             throw new NotImplementedException();
@@ -56,11 +56,11 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
 
         public Task InsertFinishMeetingEventAsync(Guid meetingId, Guid teamId)
         {
-            // TODO: implement
+            // TODO: not implement
             throw new NotImplementedException();
         }
 
-        public Task InsertShiftMeetingEventAsync(Guid meetingId, Guid teamId, DateTime newStartTime)
+        public Task ShiftMeetingAsync(Guid meetingId, Guid teamId, DateTime newStartTime)
         {
             // TODO: implement
             throw new NotImplementedException();

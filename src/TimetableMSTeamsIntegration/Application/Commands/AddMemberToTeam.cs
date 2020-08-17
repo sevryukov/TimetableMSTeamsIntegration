@@ -36,7 +36,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             try
             {
                 // adding member to MS Team via Graph Client
-                await _graphClient.InsertAddMemberEventAsync(
+                await _graphClient.AddMemberAsync(
                     memberId: request.MemberId,
                     teamId: request.TeamId
                 );

@@ -41,7 +41,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // after successfull cancellation post event to database 
             try
             {
-                await _graphClient.InsertCancelMeetingEventAsync(request.MeetingId, request.TeamId);
+                await _graphClient.CancelMeetingAsync(request.MeetingId, request.TeamId);
                 
                 await _integrationRepository.InsertCancelMeetingEventAsync(request.MeetingId, request.TeamId);
             }

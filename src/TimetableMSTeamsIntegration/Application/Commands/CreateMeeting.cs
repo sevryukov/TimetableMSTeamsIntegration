@@ -38,7 +38,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // save information on meeting in service database
             try
             {
-                await _grahpClient.InsertCreateMeetingEventAsync(request.MeetingId, request.TeamId);
+                await _grahpClient.CreateMeetingAsync(request.MeetingId, request.TeamId);
 
                 await _integrationRepository.InsertCreateMeetingEventAsync(request.MeetingId, request.TeamId);
             }
