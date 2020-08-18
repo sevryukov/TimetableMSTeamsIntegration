@@ -18,14 +18,13 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task<IEnumerable<IAggregate<Team>>> GetTeamEventsAsync(Guid teamId);
 
         Task InsertCloseTeamEventAsync(Guid teamId);
-        Task InsertCancelMeetingEventAsync(Guid meetingId, Guid teamId);
-        Task InsertFinishMeetingEventAsync(Guid meetingId, Guid teamId);
-        //Task RemoveMemberAsync(Guid memberId, Guid teamId);
-        //Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null);
-        Task InsertCreateMeetingEventAsync(Guid meetingId, Guid teamId);
-        //Task AddMemberAsync(Guid memberId, Guid teamId);
+        Task InsertCancelMeetingEventAsync(Guid meetingId);
+        Task InsertFinishMeetingEventAsync(Guid meetingId);
+        
+        Task InsertCreateMeetingEventAsync(string subject, DateTimeTimeZone start, DateTimeTimeZone end, List<Attendee> аttendees);
+        
 
-        Task InsertShiftMeetingEventAsync(Guid meetingId, Guid teamId, DateTime newStartTime);
+        Task InsertShiftMeetingEventAsync(Guid meetingId, DateTime newStartTime);
 
 
         Task InsertAddMemberEventAsync(Guid memberId, Guid teamId);

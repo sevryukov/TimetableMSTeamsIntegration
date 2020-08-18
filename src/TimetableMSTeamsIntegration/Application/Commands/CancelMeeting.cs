@@ -11,13 +11,13 @@ namespace TimetableMSTeamsIntegration.Application.Commands
     public class CancelMeeting : IRequest
     {
         // TODO: put here information required for identifying meeting
-        public CancelMeeting(Guid meetingId, Guid teamId)
+        public CancelMeeting(Guid meetingId)
         {
             MeetingId = meetingId;
-            TeamId = teamId;
+            
         }
         public Guid MeetingId{ get; private set; } 
-        public Guid TeamId{ get; private set; } 
+        
     } 
 
     public class CancelMeetingHandler : IRequestHandler<CancelMeeting>
@@ -41,9 +41,9 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // after successfull cancellation post event to database 
             try
             {
-                await _graphClient.CancelMeetingAsync(request.MeetingId, request.TeamId);
+                await _graphClient.CancelMeetingAsync(request.MeetingId);
                 
-                await _integrationRepository.InsertCancelMeetingEventAsync(request.MeetingId, request.TeamId);
+                await _integrationRepository.InsertCancelMeetingEventAsync(request.MeetingId);
             }
             catch(Exception e)
             {

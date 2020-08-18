@@ -9,15 +9,13 @@ namespace TimetableMSTeamsIntegration.Application.Commands
     public class ShiftMeeting : IRequest
     {
         // TODO: put info about meeting to be shifted and to what time
-        public ShiftMeeting(Guid meetingId, Guid teamId, DateTime newStartTime)
+        public ShiftMeeting(Guid meetingId, DateTime newStartTime)
         {
-            MeetingId = meetingId;
-            TeamId = teamId;
+            MeetingId = meetingId;   
             NewStartTime = newStartTime;
         }
 
         public Guid MeetingId{ get; private set; }
-        public Guid TeamId{ get; private set; }
         public DateTime NewStartTime{ get; private set; }
     }
 
@@ -41,9 +39,9 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // save info about meeting shift in db
             try
             {
-                await _graphClient.ShiftMeetingAsync(request.MeetingId, request.TeamId, request.NewStartTime);
+                await _graphClient.ShiftMeetingAsync(request.MeetingId, request.NewStartTime);
 
-                await _integrationRepository.InsertShiftMeetingEventAsync(request.MeetingId, request.TeamId, request.NewStartTime);
+                await _integrationRepository.InsertShiftMeetingEventAsync(request.MeetingId, request.NewStartTime);
             }
             catch(Exception e)
             {

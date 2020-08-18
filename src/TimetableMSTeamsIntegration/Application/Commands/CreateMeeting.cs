@@ -8,14 +8,18 @@ namespace TimetableMSTeamsIntegration.Application.Commands
 {
     public class CreateMeeting : IRequest
     {
-        public CreateMeeting(Guid meetingId, Guid teamId)
+        public CreateMeeting(string subject, DateTimeTimeZone start, DateTimeTimeZone end, List<Attendee> аttendees)
         {
-            MeetingId = meetingId;
-            TeamId = teamId;
+            Subject = subject;
+            Start = start;
+            End = end;
+            Attendees = attendees;
         }
 
-        public Guid MeetingId{ get; private set; }
-        public Guid TeamId{ get; private set; }
+        public string Subject{ get; private set; }
+        public DateTimeTimeZone Start{ get; private set; }
+        public DateTimeTimeZone End{ get; private set; }
+        public List<Attendee> Attendees { get; private set;}
     }
 
     public class CreateMeetingHandler : IRequestHandler<CreateMeeting>
@@ -38,9 +42,9 @@ namespace TimetableMSTeamsIntegration.Application.Commands
             // save information on meeting in service database
             try
             {
-                await _grahpClient.CreateMeetingAsync(request.MeetingId, request.TeamId);
+                await _grahpClient.CreateMeetingAsync(request.Subject, request.Start, request.End, request.Attendees);
 
-                await _integrationRepository.InsertCreateMeetingEventAsync(request.MeetingId, request.TeamId);
+                await _integrationRepository.InsertCreateMeetingEventAsync(request.Subject, request.Start, request.End, request.Attendees);
             }
             catch(Exception e)
             {
