@@ -2,7 +2,8 @@
 
 namespace TimetableMSTeamsIntegration.Common.Application
 {
-    public class Class1
+    public interface IIdentifible
     {
+        Guid Id { get; set; }
     }
 }

@@ -11,10 +11,10 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task AddMemberAsync(Guid memberId, Guid teamId);
         Task RemoveMemberAsync(Guid memberId, Guid teamId);
         Task RemoveMembersAsync(IEnumerable<(Guid memberId, Guid teamId)> members);
-        Task CreateMeetingAsync(Guid meetingId, Guid teamId);
-        Task CancelMeetingAsync(Guid meetingId, Guid teamId);
-        Task InsertFinishMeetingEventAsync(Guid meetingId, Guid teamId);
-        Task ShiftMeetingAsync(Guid meetingId, Guid teamId, DateTime newStartTime);
+        Task CreateMeetingAsync(string subject,DataTimeTimeZone start, DataTimeTimeZone end, List<Attendee> antendees);
+        Task CancelMeetingAsync(Guid meetingId);
+        Task InsertFinishMeetingEventAsync(Guid meetingId);
+        Task ShiftMeetingAsync(Guid meetingId, DateTime newStartTime);
         Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null);
         Task CloseTeamAsync(Guid teamId);
     }
