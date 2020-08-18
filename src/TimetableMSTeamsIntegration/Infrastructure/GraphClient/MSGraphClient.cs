@@ -75,7 +75,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
             .Header("Prefer","outlook.timezone=\"Pacific Standard Time\"")
             .AddAsync(@event);
         } 
-        public async Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<Guid> аttendees)
+        /*public async Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<Guid> аttendees)
         {
             var attendeesToAdd = new List<Attendee>();
             //TODO: implement method to get members by their ids 
@@ -108,7 +108,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
             .AddAsync(@event);
 
              
-        }
+        }*/
 
         public Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null)
         {

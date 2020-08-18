@@ -13,7 +13,7 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task RemoveMemberAsync(Guid memberId, Guid teamId);
         Task RemoveMembersAsync(IEnumerable<(Guid memberId, Guid teamId)> members);
         Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<TeamMember> аttendees);
-        Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<Guid> idAttendees);
+        //Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<Guid> idAttendees);
         Task CancelMeetingAsync(Guid meetingId);
         Task FinishMeetingAsync(Guid meetingId);
         Task ShiftMeetingAsync(Guid meetingId, DateTime newStartTime);

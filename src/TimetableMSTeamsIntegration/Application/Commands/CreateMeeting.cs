@@ -10,23 +10,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
 {
     public class CreateMeeting : IRequest
     {
-        public CreateMeeting(string subject, DateTime start, DateTime end, List<Guid> attendees)
-        {
-            Subject = subject;
-            Start = start;
-            End = end;
-            Attendees = attendees;
-            
-        }
-
-        public string Subject{ get; private set; }
-        public DateTime Start{ get; private set; }
-        public DateTime End{ get; private set; }
-        public List<Guid> Attendees { get; private set;}
-    }
-    public class CreateMeetingSecondEdition: IRequest
-    {
-        public CreateMeetingSecondEdition(string subject, DateTime start, DateTime end, List<TeamMember> attendees)
+        public CreateMeeting(string subject, DateTime start, DateTime end, List<TeamMember> attendees)
         {
             Subject = subject;
             Start = start;
@@ -40,6 +24,22 @@ namespace TimetableMSTeamsIntegration.Application.Commands
         public DateTime End{ get; private set; }
         public List<TeamMember> Attendees { get; private set;}
     }
+    /*public class CreateMeetingSecondEdition: IRequest
+    {
+        public CreateMeetingSecondEdition(string subject, DateTime start, DateTime end, List<Guid> attendees)
+        {
+            Subject = subject;
+            Start = start;
+            End = end;
+            Attendees = attendees;
+            
+        }
+
+        public string Subject{ get; private set; }
+        public DateTime Start{ get; private set; }
+        public DateTime End{ get; private set; }
+        public List<Guid> Attendees { get; private set;}
+    }*/
     public class CreateMeetingHandler : IRequestHandler<CreateMeeting>
     {
         private readonly IIntegrationRepository _integrationRepository;
@@ -73,7 +73,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
         }
     }
 
-    public class CreateMeetingSecondEditionHandler: IRequestHandler<CreateMeetingSecondEdition>
+   /* public class CreateMeetingSecondEditionHandler: IRequestHandler<CreateMeetingSecondEdition>
     {
         private readonly IIntegrationRepository _integrationRepository;
         private readonly IMSGraphClient _grahpClient;
@@ -104,5 +104,5 @@ namespace TimetableMSTeamsIntegration.Application.Commands
         }
 
 
-    }
+    }*/
 }

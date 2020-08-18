@@ -22,7 +22,7 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task InsertFinishMeetingEventAsync(Guid meetingId);
         
         Task InsertCreateMeetingEventAsync(string subject, DateTime start, DateTime end, List<TeamMember> аttendees);
-        Task InsertCreateMeetingEventAsync(string subject, DateTime start, DateTime end, List<Guid> idAttendees);
+        //Task InsertCreateMeetingEventAsync(string subject, DateTime start, DateTime end, List<Guid> idAttendees);
 
         Task InsertShiftMeetingEventAsync(Guid meetingId, DateTime newStartTime);
 
