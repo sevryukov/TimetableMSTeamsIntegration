@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Graph;
+using TimetableMSTeamsIntegration.Domain.Entities;
 using TimetableMSTeamsIntegration.Application.Services;
 
 namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
@@ -18,7 +19,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
             throw new NotImplementedException();
         }
 
-        public Task CancelMeetingAsync(Guid meetingId, Guid teamId)
+        public Task CancelMeetingAsync(Guid meetingId)
         {
             // TODO: implement
             throw new NotImplementedException();
@@ -30,10 +31,83 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
             throw new NotImplementedException();
         }
 
-        public Task CreateMeetingAsync(Guid meetingId, Guid teamId)
+        public async Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<TeamMember> аttendees)
         {
-            // TODO: implement
-            throw new NotImplementedException();
+            var attendeesToAdd = new List<Attendee>();
+            foreach (TeamMember person in аttendees)
+            {
+                attendeesToAdd.Add(new Attendee
+                {
+                    EmailAddress = new EmailAddress
+                    {
+                        Name = person.FullName,
+                        Address = person.Email
+                    },
+                    Type = AttendeeType.Required
+                });
+
+            }
+            var @event = new Event
+            {
+                Subject = subject,
+                Body = new ItemBody
+                {
+                    ContentType = BodyType.Html,
+                    Content = "Some description"
+                },
+                Start = new DateTimeTimeZone
+                {
+                    DateTime = "2020-08-19T12:00:00",
+                    TimeZone = "Pacific Standard Time"
+                },
+                End = new DateTimeTimeZone
+                {
+                    DateTime = "2020-08-19T13:00:00",
+                    TimeZone = "Pacific Standard Time"
+                },
+                Attendees = attendeesToAdd,
+                IsOnlineMeeting = true,
+                OnlineMeetingProvider = OnlineMeetingProviderType.TeamsForBusiness
+
+            };
+            await _graphClient.Me.Events
+            .Request()
+            .Header("Prefer","outlook.timezone=\"Pacific Standard Time\"")
+            .AddAsync(@event);
+        } 
+        public async Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<Guid> аttendees)
+        {
+            var attendeesToAdd = new List<Attendee>();
+            //TODO: implement method to get members by their ids 
+             var @event = new Event
+            {
+                Subject = subject,
+                Body = new ItemBody
+                {
+                    ContentType = BodyType.Html,
+                    Content = "Some description"
+                },
+                Start = new DateTimeTimeZone
+                {
+                    DateTime = "2020-08-19T12:00:00",
+                    TimeZone = "Pacific Standard Time"
+                },
+                End = new DateTimeTimeZone
+                {
+                    DateTime = "2020-08-19T13:00:00",
+                    TimeZone = "Pacific Standard Time"
+                },
+                Attendees = attendeesToAdd,
+                IsOnlineMeeting = true,
+                OnlineMeetingProvider = OnlineMeetingProviderType.TeamsForBusiness
+
+            };
+            await _graphClient.Me.Events
+            .Request()
+            .Header("Prefer","outlook.timezone=\"Pacific Standard Time\"")
+            .AddAsync(@event);
+
+             
         }
 
         public Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null)
@@ -54,13 +128,13 @@ namespace TimetableMSTeamsIntegration.Infrastructure.GraphClient
             throw new NotImplementedException();
         }
 
-        public Task InsertFinishMeetingEventAsync(Guid meetingId, Guid teamId)
+        public Task FinishMeetingAsync(Guid meetingId)
         {
             // TODO: not implement
             throw new NotImplementedException();
         }
 
-        public Task ShiftMeetingAsync(Guid meetingId, Guid teamId, DateTime newStartTime)
+        public Task ShiftMeetingAsync(Guid meetingId, DateTime newStartTime)
         {
             // TODO: implement
             throw new NotImplementedException();

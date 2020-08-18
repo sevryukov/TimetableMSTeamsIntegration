@@ -21,8 +21,8 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task InsertCancelMeetingEventAsync(Guid meetingId);
         Task InsertFinishMeetingEventAsync(Guid meetingId);
         
-        Task InsertCreateMeetingEventAsync(string subject, DateTime start, DateTime end, List<Attendee> аttendees);
-        
+        Task InsertCreateMeetingEventAsync(string subject, DateTime start, DateTime end, List<TeamMember> аttendees);
+        Task InsertCreateMeetingEventAsync(string subject, DateTime start, DateTime end, List<Guid> idAttendees);
 
         Task InsertShiftMeetingEventAsync(Guid meetingId, DateTime newStartTime);
 
