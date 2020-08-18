@@ -8,7 +8,7 @@ namespace TimetableMSTeamsIntegration.Application.Commands
 {
     public class CreateMeeting : IRequest
     {
-        public CreateMeeting(string subject, DateTimeTimeZone start, DateTimeTimeZone end, List<Attendee> аttendees)
+        public CreateMeeting(string subject, DateTime start, DateTime end, List<Attendee> аttendees)
         {
             Subject = subject;
             Start = start;
@@ -17,8 +17,8 @@ namespace TimetableMSTeamsIntegration.Application.Commands
         }
 
         public string Subject{ get; private set; }
-        public DateTimeTimeZone Start{ get; private set; }
-        public DateTimeTimeZone End{ get; private set; }
+        public DateTime Start{ get; private set; }
+        public DateTime End{ get; private set; }
         public List<Attendee> Attendees { get; private set;}
     }
 

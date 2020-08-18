@@ -11,7 +11,7 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task AddMemberAsync(Guid memberId, Guid teamId);
         Task RemoveMemberAsync(Guid memberId, Guid teamId);
         Task RemoveMembersAsync(IEnumerable<(Guid memberId, Guid teamId)> members);
-        Task CreateMeetingAsync(string subject, DateTimeTimeZone start, DateTimeTimeZone end, List<Attendee> аttendees);
+        Task CreateMeetingAsync(string subject, DateTime start, DateTime end,  List<Attendee> аttendees);
         Task CancelMeetingAsync(Guid meetingId);
         Task InsertFinishMeetingEventAsync(Guid meetingId);
         Task ShiftMeetingAsync(Guid meetingId, DateTime newStartTime);
