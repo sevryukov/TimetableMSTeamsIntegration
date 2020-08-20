@@ -9,6 +9,5 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Team GetTeamFromTimetable(Guid teamTimetableId);
         Meeting GetMeetingFromTimetable(Guid meetingTimetableId, Guid teamTimetableId);
         TeamMember GetTeamMemberFromTimetable(Guid memberTimetableId, Guid teamTimetableId);
-  
     }
 }
