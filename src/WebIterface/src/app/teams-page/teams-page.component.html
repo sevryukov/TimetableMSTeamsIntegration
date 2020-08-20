@@ -1,1 +1,11 @@
-<p>teams-page works!</p>
+<div class="container">
+    <div class="head">
+        <p>Группы</p>
+    </div>
+    <hr>
+    <div class="teams-list">
+        <ul class="ul">
+            <li class="li" *ngFor="let team of teams" >{{team}} <input type="button" class="button" [routerLink] = "['/' +  team]"></li>
+        </ul>
+    </div>
+</div>

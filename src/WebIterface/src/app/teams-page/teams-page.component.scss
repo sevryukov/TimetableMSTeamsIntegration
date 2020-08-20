@@ -1,0 +1,43 @@
+$green: #71ff4e;
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 4em;
+}
+
+.ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+}
+
+.li{
+    width: 50vw;
+    font-family: "Trebuchet MS", "Lucida Sans";
+    padding: 7px 20px;
+    margin-bottom:10px;
+    border-radius: 5px;
+    box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),
+     -2px -2px 5px 0 rgba(0,0,0,.1),
+     2px 2px 5px 0 rgba(0,0,0,.1),
+     -2px 2px 5px 0 rgba(0,0,0,.1);
+     font-size: 20px;
+     letter-spacing: 2px;
+     transition: 0.3s all linear;
+} 
+
+.button{
+    background-color: $green;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-meetings-page',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meetings-page.component.scss']
 })
 export class MeetingsPageComponent implements OnInit {
+  meeting: string;
+  meetings = ['first', 'second', 'third', '...']
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+      this.route.params.subscribe(params => {
+        this.meeting = params['meeting'];
+      })
+  }
 
   ngOnInit(): void {
   }

@@ -1,1 +1,11 @@
-<p>meetings-page works!</p>
+<div class="container">
+    <div class="head">
+        <p>Встречи группы "{{meeting}}"</p>
+    </div>
+    <hr>
+    <div class="teams-list">
+        <ul class="ul">
+            <li class="li" *ngFor="let meeting of meetings">{{meeting}}</li>
+        </ul>
+    </div>
+</div>
