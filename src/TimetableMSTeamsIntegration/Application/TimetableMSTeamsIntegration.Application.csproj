@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\TimetableMSTeamsIntegration.Domain.csproj" />
     <ProjectReference Include="..\Common\Domain\TimetableMSTeamsIntegration.Common.Domain.csproj" />
+    <ProjectReference Include="..\Common\Application\TimetableMSTeamsIntegration.Common.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

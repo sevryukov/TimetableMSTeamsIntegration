@@ -39,11 +39,11 @@ namespace TimetableMSTeamsIntegration.Application.Commands
 
     public class CreateTeamHandler : IRequestHandler<CreateTeam>
     {
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IEventRepository _integrationRepository;
         private readonly IMSGraphClient _graphClient;
 
         public CreateTeamHandler(
-            IIntegrationRepository integrationRepository,
+            IEventRepository integrationRepository,
             IMSGraphClient graphClient)
         {
             _integrationRepository = integrationRepository;

@@ -3,47 +3,52 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using TimetableMSTeamsIntegration.Application.Services;
+using TimetableMSTeamsIntegration.Common.Application;
+using TimetableMSTeamsIntegration.Domain.Entities.Events;
 
 namespace TimetableMSTeamsIntegration.Application.Commands
 {
     public class CancelMeeting : IRequest
     {
-        // TODO: put here information required for identifying meeting
         public CancelMeeting(Guid meetingId)
         {
             MeetingId = meetingId;
-            
+
         }
-        public Guid MeetingId{ get; private set; } 
-        
-    } 
+        public Guid MeetingId { get; private set; }
+        public Guid TeamId { get; set; }
+
+    }
 
     public class CancelMeetingHandler : IRequestHandler<CancelMeeting>
     {
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IRepository<MeetingCanceledEvent, Guid> _eventRepository;
         private readonly IMSGraphClient _graphClient;
 
         public CancelMeetingHandler(
-            IIntegrationRepository integrationRepository,
+            IRepository<MeetingCanceledEvent, Guid> eventRepository,
             IMSGraphClient graphClient)
         {
-            _integrationRepository = integrationRepository;
+            _eventRepository = eventRepository;
             _graphClient = graphClient;
         }
 
         public async Task<Unit> Handle(CancelMeeting request, CancellationToken cancellationToken)
         {
-            // TODO: implement handling
-            // from command get information about meeting to be changed
-            // cancel it via graph
-            // after successfull cancellation post event to database 
             try
             {
                 await _graphClient.CancelMeetingAsync(request.MeetingId);
-                
-                await _integrationRepository.InsertCancelMeetingEventAsync(request.MeetingId);
+
+                var @event = new MeetingCanceledEvent()
+                {
+                    TeamId = request.TeamId,
+                    MeetingId = request.MeetingId
+                }
+
+
+                await _eventRepository.InsertAsync(@event);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }

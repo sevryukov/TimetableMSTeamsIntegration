@@ -10,12 +10,12 @@ namespace TimetableMSTeamsIntegration.Application.Commands
     public class CreateMeetingsForSemesterHandler : IRequestHandler<CreateMeetingsForSemester>
     {
         // main service repository
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IEventRepository _integrationRepository;
         private readonly ITimetableRepository _timetableRepository;
         private readonly IMSGraphClient _grahpClient;
 
         public CreateMeetingsForSemesterHandler(
-            IIntegrationRepository repository,
+            IEventRepository repository,
             ITimetableRepository timetableRepository,
             IMSGraphClient grahpClient)
         {

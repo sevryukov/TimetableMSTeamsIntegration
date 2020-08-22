@@ -21,11 +21,11 @@ namespace TimetableMSTeamsIntegration.Application.Commands
 
     public class ShiftMeetingHandler : IRequestHandler<ShiftMeeting>
     {
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IEventRepository _integrationRepository;
         private readonly IMSGraphClient _graphClient;
 
         public ShiftMeetingHandler(
-            IIntegrationRepository integrationRepository,
+            IEventRepository integrationRepository,
             IMSGraphClient graphClient)
         {
             _integrationRepository = integrationRepository;

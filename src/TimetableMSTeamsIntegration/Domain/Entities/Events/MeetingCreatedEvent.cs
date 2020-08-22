@@ -4,14 +4,15 @@ using TimetableMSTeamsIntegration.Domain.Abstract;
 
 namespace TimetableMSTeamsIntegration.Domain.Entities.Events
 {
-    public class MeetingCreatedEvent : 
-        AuditableEntity, 
-        IIdentifiable<Guid>, 
+    public class MeetingCreatedEvent :
+        AuditableEntity,
+        IIdentifiable<Guid>,
         IAggregationEvent<Meeting>
     {
         public Guid Id { get; set; }
         public Guid TeamId { get; set; }
         public Guid TimetableEventId { get; set; }
+        public string Title { get; set; }
         public DateTime StartsAt { get; set; }
         public DateTime EndsAt { get; set; }
 

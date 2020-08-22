@@ -20,11 +20,11 @@ namespace TimetableMSTeamsIntegration.Application.Commands
 
     public class RemoveMemberFromTeamHandler : IRequestHandler<RemoveMemberFromTeam>
     {
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IEventRepository _integrationRepository;
         private readonly IMSGraphClient _graphClient;
 
         public RemoveMemberFromTeamHandler(
-            IIntegrationRepository integrationRepository,
+            IEventRepository integrationRepository,
             IMSGraphClient graphClient)
         {
             _integrationRepository = integrationRepository;

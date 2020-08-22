@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using TimetableMSTeamsIntegration.Application.Services;
 using System;
+using TimetableMSTeamsIntegration.Domain.Entities.Events;
+using TimetableMSTeamsIntegration.Domain;
 
 namespace TimetableMSTeamsIntegration.Application.Commands
 {
@@ -15,18 +17,19 @@ namespace TimetableMSTeamsIntegration.Application.Commands
         }
         public Guid MemberId { get; private set; }
         public Guid TeamId { get; private set; }
+        public MemberRole Role { get; set; }
     }
 
     public class AddMemberToTeamHandler : IRequestHandler<AddMemberToTeam>
     {
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly IMSGraphClient _graphClient;
 
         public AddMemberToTeamHandler(
-            IIntegrationRepository integrationRepository,
+            IEventRepository eventRepository,
             IMSGraphClient graphClient)
         {
-            _integrationRepository = integrationRepository;
+            _eventRepository = eventRepository;
             _graphClient = graphClient;
         }
 
@@ -37,14 +40,20 @@ namespace TimetableMSTeamsIntegration.Application.Commands
                 // adding member to MS Team via Graph Client
                 await _graphClient.AddMemberAsync(
                     memberId: request.MemberId,
-                    teamId: request.TeamId
+                    teamId: request.TeamId,
+                    role: request.Role
                 );
 
-                // everything is ok => create event in repo that describes that member was added
-                await _integrationRepository.InsertAddMemberEventAsync(
-                    memberId: request.MemberId,
-                    teamId: request.TeamId
-                );
+                // create event
+                var @event = new MemberAddedEvent()
+                {
+                    UserId = request.MemberId,
+                    TeamId = request.TeamId,
+                    UserRole = request.Role
+                };
+
+                // insert event into repo
+                await _eventRepository.InsertAsync(@event);
             }
             catch (Exception e)
             {

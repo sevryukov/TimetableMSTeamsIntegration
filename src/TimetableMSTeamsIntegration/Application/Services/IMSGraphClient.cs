@@ -17,5 +17,6 @@ namespace TimetableMSTeamsIntegration.Application.Services
         Task ShiftMeetingAsync(Guid meetingId, DateTime newStartTime);
         Task<Guid> CreateTeamAsync(Guid discipline, Guid division, Guid contingentUnit, int year, int semester, ICollection<Guid> members = null);
         Task CloseTeamAsync(Guid teamId);
+        Task AddMemberAsync(Guid memberId, Guid teamId, object role);
     }
 }

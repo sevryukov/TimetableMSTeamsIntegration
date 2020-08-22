@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using System;
 using TimetableMSTeamsIntegration.Application.Services;
+using TimetableMSTeamsIntegration.Domain.Entities.Events;
 
 namespace TimetableMSTeamsIntegration.Application.Commands
 {
@@ -12,35 +13,37 @@ namespace TimetableMSTeamsIntegration.Application.Commands
         {
             TeamId = teamId;
         }
-        public Guid TeamId{ get; private set; }
+        public Guid TeamId { get; private set; }
 
     }
 
     public class CloseTeamHandler : IRequestHandler<CloseTeam>
     {
-        private readonly IIntegrationRepository _integrationRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly IMSGraphClient _graphClient;
 
         public CloseTeamHandler(
-            IIntegrationRepository integrationRepository,
+            IEventRepository eventRepository,
             IMSGraphClient graphClient)
         {
-            _integrationRepository = integrationRepository;
+            _eventRepository = eventRepository;
             _graphClient = graphClient;
         }
 
         public async Task<Unit> Handle(CloseTeam request, CancellationToken cancellationToken)
         {
-            // TODO: implement handling
-            // delete team via graph api
-            // put information about team deletion to db
             try
             {
                 await _graphClient.CloseTeamAsync(request.TeamId);
 
-                await _integrationRepository.InsertCloseTeamEventAsync(request.TeamId);
+                var @event = new TeamClosedEvent()
+                {
+                    TeamId = request.TeamId
+                };
+
+                await _eventRepository.InsertAsync(@event);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }

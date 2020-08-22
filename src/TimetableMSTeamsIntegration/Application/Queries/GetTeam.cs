@@ -17,7 +17,7 @@ namespace TimetableMSTeamsIntegration.Application.Queries
 
     public class GetTeamHandler : IRequestHandler<GetTeam, Team>
     {
-        public IIntegrationRepository _integrationRepository;
+        public IEventRepository _integrationRepository;
         public async Task<Team> Handle(GetTeam request, CancellationToken cancellationToken)
         {
             var teamAggregates = await _integrationRepository.GetTeamEventsAsync(request.TeamId);
