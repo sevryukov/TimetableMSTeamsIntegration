@@ -1,6 +1,6 @@
 using System;
 
-namespace TimetableMSTeamsIntegration.Infrastructure.Abstract
+namespace TimetableMSTeamsIntegration.Domain.Abstract
 {
     public interface IAuditable
     {

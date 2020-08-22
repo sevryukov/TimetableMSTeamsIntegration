@@ -4,6 +4,7 @@ namespace TimetableMSTeamsIntegration.Domain.Entities
 {
     public class TeamMember
     {
+        public Guid TeamId { get; set; }
         // unique identifier of user in MS Teams
         public Guid GraphId { get; set; }
         // unique identifier of team member in Timetables API

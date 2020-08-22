@@ -1,5 +1,3 @@
-using TimetableMSTeamsIntegration.Domain.Entities.Aggregates.TeamAggregates;
-using TimetableMSTeamsIntegration.Domain.Entities.Aggregates.MeetingAggregates;
 using System;
 using TimetableMSTeamsIntegration.Domain.Entities;
 using System.Threading.Tasks;

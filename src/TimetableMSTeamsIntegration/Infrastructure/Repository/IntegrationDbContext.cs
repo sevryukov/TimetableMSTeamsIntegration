@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using TimetableMSTeamsIntegration.Domain.Entities.Events;
 
-namespace TimetableMSTeamsIntegration.Infrastructure.Repository.Models
+namespace TimetableMSTeamsIntegration.Infrastructure.Repository
 {
     public class IntegrationDbContext : DbContext
     {

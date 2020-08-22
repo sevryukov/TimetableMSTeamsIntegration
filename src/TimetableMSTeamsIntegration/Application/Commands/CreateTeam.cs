@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using TimetableMSTeamsIntegration.Application.Services;
-using TimetableMSTeamsIntegration.Domain.Entities.Aggregates.TeamAggregates;
 
 namespace TimetableMSTeamsIntegration.Application.Commands
 {

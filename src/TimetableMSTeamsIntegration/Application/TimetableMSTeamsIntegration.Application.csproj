@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\TimetableMSTeamsIntegration.Domain.csproj" />
+    <ProjectReference Include="..\Common\Domain\TimetableMSTeamsIntegration.Common.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

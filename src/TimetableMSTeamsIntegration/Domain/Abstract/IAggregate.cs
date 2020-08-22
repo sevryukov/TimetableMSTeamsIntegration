@@ -1,7 +1,10 @@
+using System;
+
 namespace TimetableMSTeamsIntegration.Domain.Abstract
 {
-    public interface IAggregate<T> where T : class, IAggregate<T>, new()
+    public interface IAggregationEvent<T> where T : class, new()
     {
-        T Commit(T aggr);
+        DateTime CreatedAt { get; set; }
+        T ApplyEvent(T aggr);
     }
 }

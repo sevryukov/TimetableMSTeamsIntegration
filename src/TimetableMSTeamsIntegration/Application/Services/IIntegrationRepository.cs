@@ -1,7 +1,5 @@
 using System;
 using TimetableMSTeamsIntegration.Domain.Entities;
-using TimetableMSTeamsIntegration.Domain.Entities.Aggregates.TeamAggregates;
-using TimetableMSTeamsIntegration.Domain.Entities.Aggregates.MeetingAggregates;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TimetableMSTeamsIntegration.Domain.Abstract;
@@ -10,7 +8,7 @@ namespace TimetableMSTeamsIntegration.Application.Services
 {
     public interface IIntegrationRepository
     {
-        Task<IEnumerable<IAggregate<Team>>> GetTeamEventsAsync(Guid teamId);
+        Task<IEnumerable<IAggregationEvent<Team>>> GetTeamEventsAsync(Guid teamId);
         Task InsertCloseTeamEventAsync(Guid teamId);
         Task InsertCancelMeetingEventAsync(Guid meetingId);
         Task InsertFinishMeetingEventAsync(Guid meetingId);
