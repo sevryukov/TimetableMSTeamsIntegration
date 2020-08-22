@@ -28,6 +28,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     TeamId = table.Column<Guid>(nullable: false),
+                    TimetableEventId = table.Column<Guid>(nullable: false),
                     StartsAt = table.Column<DateTime>(nullable: false),
                     EndsAt = table.Column<DateTime>(nullable: false)
                 },
@@ -42,7 +43,9 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    MeetingId = table.Column<Guid>(nullable: false)
+                    MeetingId = table.Column<Guid>(nullable: false),
+                    NewStartTime = table.Column<DateTime>(nullable: false),
+                    NewEndTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,7 +59,8 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false),
-                    TeamId = table.Column<Guid>(nullable: false)
+                    TeamId = table.Column<Guid>(nullable: false),
+                    UserRole = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,7 +100,12 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    Title = table.Column<string>(nullable: true)
+                    Title = table.Column<string>(nullable: true),
+                    Discipline = table.Column<Guid>(nullable: false),
+                    Division = table.Column<Guid>(nullable: false),
+                    ContingentUnit = table.Column<Guid>(nullable: false),
+                    Year = table.Column<int>(nullable: false),
+                    Semester = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

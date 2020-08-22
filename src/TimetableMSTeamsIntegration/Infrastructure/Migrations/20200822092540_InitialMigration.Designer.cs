@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TimetableMSTeamsIntegration.Infrastructure.Repository.Models;
+using TimetableMSTeamsIntegration.Infrastructure.Repository;
 
 namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
 {
     [DbContext(typeof(IntegrationDbContext))]
-    [Migration("20200812144135_InitialMigration")]
+    [Migration("20200822092540_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.MeetingCanceledEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.MeetingCanceledEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     b.ToTable("MeetingCanceledEvents");
                 });
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.MeetingCreatedEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.MeetingCreatedEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,12 +59,15 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("TimetableEventId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.ToTable("MeetingCreatedEvents");
                 });
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.MeetingShiftedEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.MeetingShiftedEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,12 +79,18 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     b.Property<Guid>("MeetingId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("NewEndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NewStartTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("MeetingShiftedEvents");
                 });
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.MemberAddedEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.MemberAddedEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,12 +105,15 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("MemberAddedEvents");
                 });
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.MemberRemovedEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.MemberRemovedEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,7 +133,7 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     b.ToTable("MemberRemovedEvents");
                 });
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.TeamClosedEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.TeamClosedEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,17 +150,32 @@ namespace TimetableMSTeamsIntegration.Infrastructure.Migrations
                     b.ToTable("TeamClosedEvents");
                 });
 
-            modelBuilder.Entity("TimetableMSTeamsIntegration.Infrastructure.Repository.Models.TeamCreatedEvent", b =>
+            modelBuilder.Entity("TimetableMSTeamsIntegration.Domain.Entities.Events.TeamCreatedEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ContingentUnit")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("Discipline")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Division")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Semester")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
